@@ -4,7 +4,7 @@ module "ssh_key_generation" {
 
 module "aws_key_upload" {
   source             = "./modules/aws_key_upload"
-  key_name           = var.ssh_key_name
+  ssh_key_name       = var.ssh_key_name
   aws_default_region = var.aws_default_region
   public_key_base64  = module.ssh_key_generation.public_key_base64
 }

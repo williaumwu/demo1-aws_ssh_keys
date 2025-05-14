@@ -1,0 +1,9 @@
+desc: A stack that creates aws_ssh_key
+release: 0.0.1
+author: anonymous
+categories:
+  - config0
+  - evaluate
+tags:
+  - config0
+  - evaluate

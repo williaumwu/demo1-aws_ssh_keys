@@ -6,3 +6,10 @@ assets:
      - name: ssh_key_generation
        app_name: terraform
        folder: modules/ssh_key_generation
+   stacks:
+      - name: aws_key_gen_and_upload
+        folder: stacks
+      - name: ssh_key_generation
+        folder: stacks
+      - name: aws_key_upload
+        folder: stacks
