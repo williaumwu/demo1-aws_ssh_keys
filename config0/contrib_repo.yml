@@ -1,0 +1,8 @@
+assets:
+   execgroups:
+     - name: aws_key_upload
+       app_name: terraform
+       folder: modules/aws_key_upload
+     - name: ssh_key_generation
+       app_name: terraform
+       folder: modules/ssh_key_generation
