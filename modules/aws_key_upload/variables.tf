@@ -4,7 +4,7 @@ variable "aws_default_region" {
   default     = "us-east-1"
 }
 
-variable "key_name" {
+variable "ssh_key_name" {
   description = "Name of the SSH key pair in AWS"
   type        = string
   default     = "terraform-generated-key"
