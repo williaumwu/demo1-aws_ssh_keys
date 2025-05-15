@@ -1,0 +1,27 @@
+global:
+  arguments: 
+    aws_default_region: us-east-2
+  metadata:   
+    labels:
+       demo: 
+         environment: demo
+         purpose: test
+         cloud: aws
+    matchSelectors:
+       ssh_key_info:
+         match_labels:
+           environment: demo
+           purpose: test
+           cloud: aws
+         resource_type: ssh_key_pair
+infrastructure:
+   ssh_public_key:
+       stack_name: williaumwu:::aws_key_gen_and_upload
+       arguments:
+          ssh_key_name: config0-demo
+          public_key_base64: selector:::ssh_key_info::public_key_base64
+       metadata:
+          labels:
+            - demo
+          matchSelectors:
+            - ssh_key_info
