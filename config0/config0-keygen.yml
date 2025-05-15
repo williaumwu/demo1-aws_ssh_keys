@@ -1,0 +1,17 @@
+global:
+  arguments: 
+    aws_default_region: eu-west-1
+  metadata:   
+    labels:
+       demo: 
+         environment: demo
+         purpose: test
+         cloud: aws
+infrastructure:
+   ssh_public_key:
+       stack_name: williaumwu:::ssh_key_generation
+       arguments:
+          ssh_key_name: config0-demo
+       metadata:
+          labels:
+            - demo

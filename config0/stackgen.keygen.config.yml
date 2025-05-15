@@ -1,0 +1,8 @@
+tf_variables_file: null
+execgroup: williaumwu:::demo1-aws_ssh_keys::ssh_key_generation
+resource_type: ssh_key_pair
+resource_name: null
+timeout: 300
+tf_runtime: tofu:1.9.1
+dest_dir: stacks
+stack_name: ssh_key_generation
