@@ -1,5 +1,12 @@
 from config0_publisher.terraform import TFConstructor
 
+def _get_public_key_base64(stack):
+    return stack.get_resource(
+        name=stack.ssh_key_name,
+        must_be_one=True,
+        use_labels="project",
+        resource_type=stack.resource_type_ssh_key_name,
+    )[0]["public_key_base64"]
 
 def run(stackargs):
 
@@ -8,24 +15,18 @@ def run(stackargs):
 
     # Add default variables
     stack.parse.add_optional(key="aws_default_region",
-                                 default="us-east-1",
-                                 tags="tfvar,db,resource,tf_exec_env",
-                                 types="str")
+                             default="us-east-1",
+                             tags="tfvar,db,resource,tf_exec_env",
+                             types="str")
     
-    stack.parse.add_optional(key="ssh_key_name",
-                                 default="terraform-generated-key",
-                                 tags="tfvar,db",
-                                 types="str")
-    
-    stack.parse.add_optional(key="public_key",
-                                 default="null",
-                                 tags="tfvar,db",
-                                 types="str")
+    stack.parse.add_required(key="ssh_key_name",
+                             tags="tfvar,db",
+                             types="str")
     
     stack.parse.add_optional(key="public_key_base64",
-                                 default="null",
-                                 tags="tfvar,db",
-                                 types="str")
+                             default="null",
+                             tags="tfvar,db",
+                             types="str")
     
     # Add execgroup
     stack.add_execgroup("williaumwu:::demo1-aws_ssh_keys::aws_key_upload",
@@ -38,6 +39,9 @@ def run(stackargs):
     stack.init_variables()
     stack.init_execgroups()
     stack.init_substacks()
+
+    if not stack.public_key_base64:
+        stack.set_variable("public_key_base64", _get_public_key_base64(stack))
 
     stack.set_variable("timeout", 300)
 
