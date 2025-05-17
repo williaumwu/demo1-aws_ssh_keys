@@ -5,7 +5,7 @@ def _get_public_key_base64(stack):
         name=stack.ssh_key_name,
         must_be_one=True,
         use_labels="project",
-        resource_type=stack.resource_type_ssh_key_name,
+        resource_type=stack.resource_type_ssh_key,
     )[0]["public_key_base64"]
 
 def run(stackargs):
@@ -26,6 +26,10 @@ def run(stackargs):
     stack.parse.add_optional(key="public_key_base64",
                              default="null",
                              tags="tfvar,db",
+                             types="str")
+
+    stack.parse.add_optional(key="resource_type_ssh_key",
+                             default="ssh_key_pair",
                              types="str")
     
     # Add execgroup
